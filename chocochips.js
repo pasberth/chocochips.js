@@ -26,7 +26,7 @@ let proc = macro {
     })
   }
 
-  rule { $params:ident ... [$($option:ident = $init:expr) ...] { $body:expr } } => {
+  rule { $params:ident ... [$($option:ident = $init:expr) ...] { $body ... } } => {
     (function ($params ... $option ...) {
       setdefault { $($option = $init) (,) ... }
       $body ...
