@@ -75,7 +75,7 @@ Equivalent to:
       stat_2 ;
       :
       stat_n ;
-    });
+    })();
 
 Be careful. the section macro complements a semicolon.
 
