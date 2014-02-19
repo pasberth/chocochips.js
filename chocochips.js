@@ -57,23 +57,25 @@ let when = macro {
   }
 }
 
-MultiFn = proc dispatchFn {
-  var list = [];
-  var multiFn = proc {
-    var x = dispatchFn.apply({}, arguments);
-    for f <- list {
-      when x === f.dispatchValue {
-        return f.func.apply({}, arguments)
-      }
-    }
-  }
-  multiFn.list = list;
-  return multiFn;
-}
-
 let defmulti = macro {
   rule { $name:ident $dispatchFn:expr } => {
-    $name = MultiFn($dispatchFn);
+    section {
+      MultiFn = proc dispatchFn {
+          var list = [];
+          var multiFn = proc {
+          var x = dispatchFn.apply({}, arguments);
+          for f <- list {
+            when x === f.dispatchValue {
+              return f.func.apply({}, arguments)
+            }
+          }
+        }
+        multiFn.list = list;
+        return multiFn;
+      }
+
+      $name = MultiFn($dispatchFn);
+    }
   }
 }
 
