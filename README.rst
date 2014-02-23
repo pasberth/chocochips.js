@@ -107,3 +107,26 @@ Multimethods
 
 A port of Clojure's `Multimethods <http://clojure.org/multimethods>`_
 See source code.
+
+foreach
+----------------
+
+.. code-block:: js
+
+  foreach i <- things {
+    console.log(i);
+  }
+
+do notation
+----------------
+
+Using multimethods.
+see source code.
+
+.. code-block::
+
+  do Array {
+    i <- [1,2,3] ;
+    j <- [4,5,6] ;
+    return [i,j] ;
+  }
